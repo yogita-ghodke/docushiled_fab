@@ -1,0 +1,43 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DocuShield </title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1> DocuShield: Smart PDF Privacy Tool</h1>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+      <input type="file" name="pdf" accept=".pdf" required>
+      <button type="submit">Upload PDF</button>
+    </form>
+
+    {% if aadhaar or emails %}
+      <div class="results">
+        <h2>🔍 Detected Data:</h2>
+
+        {% if aadhaar %}
+          <h3>Aadhaar Numbers:</h3>
+          <ul>
+            {% for a in aadhaar %}
+              <li>{{ a }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+
+        {% if emails %}
+          <h3>Emails:</h3>
+          <ul>
+            {% for e in emails %}
+              <li>{{ e }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>
